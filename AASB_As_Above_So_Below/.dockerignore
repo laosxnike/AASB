@@ -1,0 +1,148 @@
+# ----------------------------
+# Byte-compiled / optimized / DLL files
+# ----------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ----------------------------
+# C extensions
+# ----------------------------
+*.so
+
+# ----------------------------
+# Virtual environments
+# ----------------------------
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# ----------------------------
+# Installer logs
+# ----------------------------
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ----------------------------
+# Unit test / coverage reports
+# ----------------------------
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# ----------------------------
+# Translations
+# ----------------------------
+*.mo
+*.pot
+
+# ----------------------------
+# Documentation builds
+# ----------------------------
+docs/_build/
+
+# ----------------------------
+# PyBuilder
+# ----------------------------
+target/
+
+# ----------------------------
+# Jupyter Notebook checkpoints
+# ----------------------------
+.ipynb_checkpoints/
+
+# ----------------------------
+# Data files (optional, exclude if not needed in Docker)
+# ----------------------------
+data/raw/
+data/processed/
+data/external/
+data/interim/
+
+# ----------------------------
+# Logs
+# ----------------------------
+logs/
+*.log
+
+# ----------------------------
+# Secrets and environment variables
+# ----------------------------
+.env
+config/secrets.yaml
+
+# ----------------------------
+# IDEs and editors
+# ----------------------------
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ----------------------------
+# OS-specific files
+# ----------------------------
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ----------------------------
+# Miscellaneous
+# ----------------------------
+*.swp
+*.swo
+*.tmp
+*.temp
+*.bak
+*.old
+*.orig
+*.rej
+*.sublime*
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# ----------------------------
+# Build directories
+# ----------------------------
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ----------------------------
+# Executable and compiled files
+# ----------------------------
+*.exe
+*.dll
+*.dylib
+
+# ----------------------------
+# Additional Python-specific
+# ----------------------------
+__pycache__/
+*.py[cod]
+*$py.class

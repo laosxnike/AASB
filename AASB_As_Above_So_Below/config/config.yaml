@@ -1,0 +1,231 @@
+# config/config.yaml
+
+# ===============================================================
+# General Application Settings
+# ===============================================================
+app:
+  name: "AASB: As Above So Below"
+  version: "1.0.0"
+  debug: true  # Set to false in production environments
+
+# ===============================================================
+# Directory Paths
+# ===============================================================
+paths:
+  data_raw: "./data/raw/"
+  data_external: "./data/external/"
+  data_interim: "./data/interim/"
+  data_processed: "./data/processed/"
+  logs: "./logs/"
+  config: "./config/"
+  visualization_output: "./visualization/output/"
+  models: "./modeling/models/"
+
+# ===============================================================
+# Data Collection Settings
+# ===============================================================
+data_collection:
+  bond_yields:
+    source: "https://api.bondyields.com/data"
+    api_key: "YOUR_BOND_YIELDS_API_KEY"  # Stored in secrets.yaml
+    collection_interval_minutes: 60  # Frequency of data collection
+    parameters:
+      region: "global"
+      maturity_periods: [2, 5, 10, 30]  # Maturities in years
+
+  climate:
+    source: "https://api.climate.com/data"
+    api_key: "YOUR_CLIMATE_DATA_API_KEY"
+    collection_interval_hours: 24
+    parameters:
+      temperature_units: "Celsius"  # Options: Celsius, Fahrenheit
+      regions: ["North America", "Europe", "Asia"]
+
+  commodities:
+    source: "https://api.commodities.com/prices"
+    api_key: "YOUR_COMMODITIES_API_KEY"
+    collection_interval_hours: 12
+    parameters:
+      commodity_types: ["Gold", "Silver", "Crude Oil", "Natural Gas"]
+      currency: "USD"  # Currency for pricing
+
+  cultural_trends:
+    source: "https://api.culturaltrends.com/data"
+    api_key: "YOUR_CULTURAL_TRENDS_API_KEY"
+    collection_interval_days: 7
+    parameters:
+      social_media_platforms: ["Twitter", "Facebook", "Instagram"]
+      sentiment_analysis: true  # Enable sentiment analysis
+
+  derivatives:
+    source: "https://api.derivatives.com/data"
+    api_key: "YOUR_DERIVATIVES_API_KEY"
+    collection_interval_minutes: 30
+    parameters:
+      derivative_types: ["Options", "Futures", "Swaps"]
+      underlying_assets: ["Stocks", "Bonds", "Commodities"]
+
+  forex:
+    source: "https://api.forex.com/rates"
+    api_key: "YOUR_FOREX_API_KEY"
+    collection_interval_minutes: 15
+    parameters:
+      base_currency: "USD"
+      target_currencies: ["EUR", "JPY", "GBP", "AUD"]
+
+  geopolitical_events:
+    source: "https://api.geopoliticalevents.com/events"
+    api_key: "YOUR_GEOPOLITICAL_EVENTS_API_KEY"
+    collection_interval_hours: 6
+    parameters:
+      regions: ["Middle East", "Asia-Pacific", "Europe"]
+      event_types: ["Elections", "Conflicts", "Trade Agreements"]
+
+  global_consciousness:
+    source: "https://api.globalconsciousness.com/data"
+    api_key: "YOUR_GLOBAL_CONSCIOUSNESS_API_KEY"
+    collection_interval_days: 1
+    parameters:
+      indicators: ["Environmental Awareness", "Social Justice Movements", "Health Awareness"]
+
+  interest_rates:
+    source: "https://api.interestrates.com/data"
+    api_key: "YOUR_INTEREST_RATES_API_KEY"
+    collection_interval_hours: 8
+    parameters:
+      central_banks: ["Federal Reserve", "European Central Bank", "Bank of Japan"]
+      rate_types: ["Short-term", "Long-term"]
+
+  social_media:
+    source: "https://api.socialmedia.com/insights"
+    api_key: "YOUR_SOCIAL_MEDIA_API_KEY"
+    collection_interval_minutes: 10
+    parameters:
+      platforms: ["Twitter", "Reddit", "LinkedIn"]
+      metrics: ["Engagement", "Mentions", "Hashtag Trends"]
+
+  stock_indices:
+    source: "https://api.stockindices.com/prices"
+    api_key: "YOUR_STOCK_INDICES_API_KEY"
+    collection_interval_minutes: 5
+    parameters:
+      indices: ["S&P 500", "Dow Jones", "NASDAQ", "FTSE 100"]
+      currency: "USD"
+
+  technology_innovations:
+    source: "https://api.techinnovations.com/data"
+    api_key: "YOUR_TECHNOLOGY_INNOVATIONS_API_KEY"
+    collection_interval_days: 3
+    parameters:
+      sectors: ["AI", "Blockchain", "Renewable Energy", "Biotechnology"]
+      innovation_metrics: ["Investment", "Patent Filings", "Startup Activity"]
+
+# ===============================================================
+# Data Preprocessing Settings
+# ===============================================================
+data_preprocessing:
+  merge_strategy: "inner"  # Options: inner, outer, left, right
+  missing_data_handling: "drop"  # Options: drop, fill, interpolate
+  fill_values:
+    numeric: 0
+    categorical: "Unknown"
+  date_format: "%Y-%m-%d"
+  normalization:
+    method: "min-max"  # Options: min-max, z-score
+    range: [0, 1]
+
+# ===============================================================
+# Modeling Settings
+# ===============================================================
+modeling:
+  granger_causality:
+    max_lag: 5
+    significance_level: 0.05
+    variables: ["Bond_Yields", "Forex", "Interest_Rates"]  # Example variables
+
+  var_models:
+    variables: ["Bond_Yields", "Forex", "Interest_Rates"]  # Must match granger_causality variables
+    max_lag: 2
+    test_stationarity: true
+    differencing: 1  # Number of differences to make the series stationary
+
+# ===============================================================
+# Visualization Settings
+# ===============================================================
+visualization:
+  graph_layout: "fixed"  # Options: fixed, dynamic
+  fixed_layout:
+    # Define fixed positions for nodes (optional)
+    nodes:
+      Bond_Yields:
+        x: 0
+        y: 0
+      Forex:
+        x: 1
+        y: 0
+      Interest_Rates:
+        x: 0.5
+        y: 1
+      # Add positions for other main nodes
+  output_format: "html"  # Options: html, png, jpeg
+  title: "Ramsey Graph: Macro Analysis"
+  node_size: 10
+  edge_width: 2
+  color_scheme:
+    nodes:
+      main: "#1f77b4"
+      sub: "#ff7f0e"
+    edges:
+      positive: "#2ca02c"
+      negative: "#d62728"
+  hover_info: ["name", "value", "description"]  # Fields to display on hover
+
+# ===============================================================
+# Logging Settings
+# ===============================================================
+logging:
+  level: "INFO"  # Options: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  format: "[%(asctime)s] %(levelname)s in %(module)s: %(message)s"
+  handlers:
+    console:
+      class: logging.StreamHandler
+      level: "DEBUG"
+      formatter: "default"
+    file:
+      class: logging.FileHandler
+      filename: "logs/app.log"
+      level: "INFO"
+      formatter: "default"
+  formatters:
+    default:
+      format: "[%(asctime)s] %(levelname)s in %(module)s: %(message)s"
+
+# ===============================================================
+# Database Settings (If Applicable)
+# ===============================================================
+database:
+  host: "YOUR_DATABASE_HOST"
+  port: 5432  # Default PostgreSQL port; adjust if necessary
+  user: "YOUR_DATABASE_USERNAME"
+  password: "YOUR_DATABASE_PASSWORD"  # Stored in secrets.yaml
+  name: "YOUR_DATABASE_NAME"
+
+# ===============================================================
+# Security Settings
+# ===============================================================
+security:
+  jwt_secret_key: "YOUR_JWT_SECRET_KEY"      # Stored in secrets.yaml
+  encryption_key: "YOUR_ENCRYPTION_KEY"    # Stored in secrets.yaml
+  token_expiry_minutes: 60
+
+# ===============================================================
+# Additional Settings
+# ===============================================================
+additional_settings:
+  api_timeout_seconds: 30
+  retry_attempts: 3
+  retry_delay_seconds: 5
+  data_backup:
+    enabled: true
+    backup_interval_hours: 24
+    backup_location: "./data_backup/"
